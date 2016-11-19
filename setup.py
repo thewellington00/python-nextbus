@@ -3,8 +3,6 @@
 import os
 import sys
 
-import nextbus
-
 try:
     from setuptools import setup
 except ImportError:
@@ -18,19 +16,19 @@ packages = [
     'nextbus',
 ]
 
-requires = []
+requires = ['requests>=2.0.1', 'lxml>=3.2.4']
 
 readme =''
 history =''
 
 setup(
     name='python-nextbus',
-    version=nextbus.__version__,
+    version='0.1b',
     description='python client for nextbus api',
     long_description=readme + '\n\n' + history,
     author='Sam Bolgert',
     author_email='sbolgert@gmail.com',
-    url='http://python.org',
+    url='https://github.com/linuxlewis/python-nextbus',
     packages=packages,
     package_data={'': ['LICENSE', 'NOTICE']},
     package_dir={'nextbus': 'nextbus'},
@@ -39,7 +37,7 @@ setup(
     license=license,
     zip_safe=False,
     classifiers=(
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 6 - Mature',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python',
@@ -47,6 +45,6 @@ setup(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
-
+        'Programming Language :: Python :: 3.5'
     ),
 )
