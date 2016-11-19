@@ -27,7 +27,7 @@ def route_config(agency=None, route=None, **kwargs):
 
 def predictions(agency=None, route=None, stop_id=None, **kwargs):
     """prediction"""
-    result = __api_call('predictions', agency=agency, route=route, stop_id=stop_id, **kwargs) or []
+    result = __api_call('predictions', agency=agency, route=route, stopId=stop_id, **kwargs) or []
     return result
 
 def set_defaults(defaults):

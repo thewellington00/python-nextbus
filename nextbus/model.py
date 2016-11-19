@@ -1,5 +1,10 @@
 from lxml import etree
 
+
+class UnknownCommandError(Exception):
+    pass
+
+
 def parse_command(command, xml):
     """parses the xml document based on the command used. returns the object structure
     associated with that xml"""
@@ -10,6 +15,8 @@ def parse_command(command, xml):
         result = __parse_routeList(xml)
     elif command == 'routeConfig':
         result = __parse_routeConfig(xml)
+    else:
+        raise UnknownCommandError("Command {0} is not recognized or not implemented".format(command))
 
     return result
 
