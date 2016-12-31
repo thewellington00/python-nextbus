@@ -39,6 +39,12 @@ Depends on requests and lxml
 Route(1-California)
 ```
 
+### predictions
+```python
+>>> predictions = nextbus.predictions(agency='sf-muni', route='1', stop_id='13896')
+>>> predictions[0]
+Vehicle in 2 minutes
+```
 
 
 
