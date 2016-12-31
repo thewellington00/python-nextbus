@@ -15,6 +15,8 @@ def parse_command(command, xml):
         result = __parse_routeList(xml)
     elif command == 'routeConfig':
         result = __parse_routeConfig(xml)
+    elif command == 'predictions':
+        result = __parse_predictions(xml)
     else:
         raise UnknownCommandError("Command {0} is not recognized or not implemented".format(command))
 
@@ -50,6 +52,16 @@ def __parse_routeConfig(xml):
         result = Route.from_element(routes[0])
 
     return result
+
+def __parse_predictions(xml):
+    """takes in nextbus xml element and returns a list of prediction objects"""
+
+    #get the list of predictions
+    predictions = xml.xpath('//prediction')
+
+    predictions = [Prediction.from_element(p) for p in predictions]
+
+    return predictions
 
 class Model(object):
 
@@ -217,3 +229,29 @@ class Stop(Model):
         self.lat = element.get('lat')
         self.lon = element.get('lon')
         self.stop_id = element.get('stopId')
+
+class Prediction(Model):
+    """class for predictions"""
+    def __init__(self):
+        self.epochTime = None
+        self.seconds = None
+        self.minutes = None
+        self.isDeparture = None
+        self.dirTag = None
+        self.vehicle = None
+        self.block = None
+        self.tripTag = None
+
+    def __repr__(self):
+        return 'Vehicle in %s minutes' % self.minutes
+
+    def hydrate(self, element):
+        self.epochTime = element.get('epochTime')
+        self.seconds = element.get('seconds')
+        self.minutes = element.get('minutes')
+        self.isDeparture = element.get('isDeparture')
+        self.dirTag = element.get('dirTag')
+        self.vehicle = element.get('vehicle')
+        self.block = element.get('block')
+        self.tripTag = element.get('tripTag')
+

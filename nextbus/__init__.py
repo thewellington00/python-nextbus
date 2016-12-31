@@ -1,4 +1,4 @@
-from .api import agency_list, route_list, route_config
+from .api import agency_list, route_list, route_config, predictions
 
 __title__ = 'python-nextbus'
 __version__ = '0.1b'
